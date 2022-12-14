@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const ejs = require("ejs");
@@ -53,12 +55,8 @@ app.use(
     secret: "Jugal096Jaina058",
   })
 );
-mongoose.connect(
-  "mongodb+srv://jugal:jilu@cluster0.z49jton.mongodb.net/?retryWrites=true&w=majority", 
-  {
-    useNewUrlParser: true,
-  }
-);
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+
 const port = 4002;
 
 app.get("/", homeindexPost);
