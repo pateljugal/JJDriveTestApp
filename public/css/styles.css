@@ -3273,6 +3273,7 @@ textarea.form-control-lg {
 .btn-outline-primary {
   color: #f4623a;
   border-color: #f4623a;
+  border-width: 0.2cm;
 }
 .btn-outline-primary:hover {
   color: #fff;
