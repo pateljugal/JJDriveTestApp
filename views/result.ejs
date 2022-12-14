@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("layouts/header") -%>
+  <body>
+    <!-- Navigation-->
+    <%- include("layouts/navbar") -%>
+    <!-- Page Header-->
+    <header class="masthead">
+      <div class="container px-4 px-lg-5 h-100">
+        <div
+          class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center"
+        >
+          <div class="col-lg-8 align-self-end">
+            <h1 class="text-white font-weight-bold">RESULT</h1>
+            <hr class="divider" />
+          </div>
+          <div class="col-lg-8 align-self-baseline">
+            <p class="text-white-75 mb-5">KEEP CALM I ADD RESULT !</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+      <!--Personal Information-->
+      <section class="page-section" id="contact">
+        <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+              <h2 class="mt-0">Result</h2>
+              <hr class="divider" />
+              <p class="text-muted mb-5">
+                The cars we drive say a lot about us.!
+              </p>
+            </div>
+          </div>
+          <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <div class="col-lg-12">
+              <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                <div class="col-lg-12" style="display: contents">
+                  <% if(driver) for(var i=0; i < driver.length; i++) { %>
+                  <div class="card col-lg-3 mb-4">
+                    <div class="card-header">Driver's Result</div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        First Name: <%= driver[i].fname %>
+                      </p>
+                      <p class="card-text">Last Name: <%= driver[i].lname %></p>
+                      <p class="card-text">
+                        Result: <%= driver[i].testResult %>
+                      </p>
+                      <p class="card-text">Comment: <%= driver[i].comment %></p>
+                    </div>
+                    <div
+                      class="card-footer text-muted"
+                      style="justify-content: center; text-align: center"
+                    >
+                      <button
+                        type="button"
+                        driverid="<%- driver[i]._id %>"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        Create Licence
+                      </button>
+                    </div>
+                  </div>
+                  <% } %> <% if(error) {%>
+                  <h5 style="color: red"><%= errormsg %></h5>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer-->
+    <%- include("layouts/footer") -%>
+    <!-- Bootstrap core JS-->
+    <%- include("layouts/scripts") -%>
+  </body>
+</html>

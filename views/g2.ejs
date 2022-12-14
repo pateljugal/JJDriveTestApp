@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("layouts/header") -%>
+
+  <body>
+    <!-- Navigation-->
+    <%- include("layouts/navbar") -%>
+    <!-- Page Header-->
+    <header class="masthead">
+      <div class="container px-4 px-lg-5 h-100">
+        <div
+          class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center"
+        >
+          <div class="col-lg-8 align-self-end">
+            <h1 class="text-white font-weight-bold">G2 TEST</h1>
+            <hr class="divider" />
+          </div>
+          <div class="col-lg-8 align-self-baseline">
+            <p class="text-white-75 mb-5">
+              KEEP CALM I JUST PASSED MY G2 DRIVING TEST !
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+      <!--Personal Information-->
+      <section class="page-section" id="contact">
+        <% if(g2driveposts && g2driveposts?.appointmentID==null){ %>
+          <form action="/save" method="POST" id="formController">
+              <% } else { %>
+          <form action="/update" method="POST" id="formController">
+                <% } %>
+        
+          <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Personal Information</h2>
+                <hr class="divider" />
+                <p class="text-muted mb-5">
+                  The cars we drive say a lot about us.!
+                </p>
+              </div>
+            </div>
+            <% if(error) {%>
+              <h5 style="color: red">
+                Enter all Data.
+              </h5>
+            <% } %>
+            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+              <div class="col-lg-12">
+                <!-- First Name input-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="fname" name="fname"
+                  type="text" placeholder="Enter your First name..."
+                  data-sb-validations="required" value="<%- g2driveposts ? g2driveposts.fname :
+                  "" %>" />
+                  <label for="F_name">First Name</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="F_name:required"
+                  >
+                    First name is required.
+                  </div>
+                </div>
+                <!-- Last Name input-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="lname" name="lname"
+                  type="text" placeholder="Enter your Last name..."
+                  data-sb-validations="required" value="<%- g2driveposts ?
+                  g2driveposts.lname : "" %>" />
+                  <label for="L_name">Last Name</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="L_name:required"
+                  >
+                    Last name is required.
+                  </div>
+                </div>
+
+                <!-- License number input-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="lnumber" name="lnumber"
+                  type="text" placeholder="Enter License Number..."
+                  data-sb-validations="required" value="<%- g2driveposts ?
+                  g2driveposts.lnumber : "" %>" />
+                  <label for="L_number">License Number</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="L_number:required"
+                  >
+                    License Number must be 8 characters.
+                  </div>
+                </div>
+
+                <!-- Age-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="Age" name="Age" type="number"
+                  placeholder="enter your Age"
+                  data-sb-validations="required,email" value="<%- g2driveposts ?
+                  g2driveposts.Age : "" %>" />
+                  <label for="Age">Age</label>
+                  <div class="invalid-feedback" data-sb-feedback="Age:required">
+                    Age is required.
+                  </div>
+                </div>
+                <!-- DOB-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="date" name="date" type="date"
+                  placeholder="select date " data-sb-validations="required,date"
+                  value="<%- g2driveposts ? g2driveposts.date : "" %>" />
+                  <label for="DOB">DOB</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="DOB is required"
+                  >
+                    DOB is required.
+                  </div>
+                </div>
+
+                <!--</form>-->
+              </div>
+            </div>
+          </div>
+
+          <!--Car Information-->
+
+          <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Car Information</h2>
+                <hr class="divider" />
+                <p class="text-muted mb-5">
+                  Before someone gets their drivers liscence they should have to
+                  beat Rainbow Road on Mario Kart without falling off.
+                </p>
+              </div>
+            </div>
+            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+              <div class="col-lg-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="make" name="make" type="text"
+                  placeholder="Enter ie make..." data-sb-validations="required"
+                  value="<%- g2driveposts ? g2driveposts.Car_details.make : "" %>" />
+                  <label for="ie make">ie make</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="ie make:required"
+                  >
+                    ie make is required.
+                  </div>
+                </div>
+                <!-- Model input-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="Model" name="Model"
+                  type="text" placeholder="Enter your name..."
+                  data-sb-validations="required" value="<%- g2driveposts ?
+                  g2driveposts.Car_details.Model : "" %>" />
+                  <label for="Model">Model</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="Model:required"
+                  >
+                    Model is required.
+                  </div>
+                </div>
+
+                <!-- Year-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="Year" name="Year" type="date"
+                  placeholder="select date " data-sb-validations="required,date"
+                  value="<%- g2driveposts ? g2driveposts.Car_details.Year : "" %>" />
+                  <label for="Year">YEAR</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="Year:required"
+                  >
+                    Year is required.
+                  </div>
+                </div>
+
+                <!-- plat number input-->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="numberplate"
+                  name="numberplate" type="text" placeholder="Enter number
+                  plate..." data-sb-validations="required" value="<%-
+                  g2driveposts ? g2driveposts.Car_details.numberplate : "" %>" />
+                  <label for="plate">Plate Number</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="plat:required"
+                  >
+                    Plate Number must is required.
+                  </div>
+                </div>
+
+                <div class="d-none" id="submitErrorMessage">
+                  <div class="text-center text-danger mb-3">
+                    Error sending message!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container px-4 px-lg-5">
+            <% if((g2driveposts && g2driveposts?.appointmentID==null) ||
+            (g2driveposts && g2driveposts?.appointmentType=="g2" )){ %>
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Book Appointment</h2>
+                <hr class="divider" />
+                <p class="text-muted mb-5">
+                  Before someone gets their drivers liscence they should have to
+                  beat Rainbow Road on Mario Kart without falling off.
+                </p>
+              </div>
+            </div>
+            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+              <div class="col-lg-12">
+                <% if((g2driveposts && g2driveposts?.appointmentID==null)){ %>
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control"
+                    id="slotDate"
+                    name="slotDate"
+                    type="date"
+                    placeholder="select date "
+                    data-sb-validations="required,date"
+                    onchange="changeDate()"
+                  />
+                  <label for="DATE">date</label>
+                  <div
+                    class="invalid-feedback"
+                    data-sb-feedback="DOB is required"
+                  >
+                    Date is required.
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <div class="btn-group" style="gap: 4px">
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option"
+                      autocomplete="off"
+                      value="09:00"
+                    />
+                    <label class="btn btn-outline-primary" for="option"
+                      >09:00 - 9:30</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option2"
+                      autocomplete="off"
+                      value="09:30"
+                    />
+                    <label class="btn btn-outline-primary" for="option2"
+                      >09:30 - 10:00</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option3"
+                      autocomplete="off"
+                      value="10:00"
+                    />
+                    <label class="btn btn-outline-primary" for="option3"
+                      >10:00 - 10:30</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option4"
+                      autocomplete="off"
+                      value="10:30"
+                    />
+                    <label class="btn btn-outline-primary" for="option4"
+                      >10:30 - 11:00</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option5"
+                      autocomplete="off"
+                      value="11:00"
+                    />
+                    <label class="btn btn-outline-primary" for="option5"
+                      >11:00 - 11:30</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option6"
+                      autocomplete="off"
+                      value="11:30"
+                    />
+                    <label class="btn btn-outline-primary" for="option6"
+                      >11:30 - 12:00</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option7"
+                      autocomplete="off"
+                      value="12:00"
+                    />
+                    <label class="btn btn-outline-primary" for="option7"
+                      >12:00 - 12:30</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option8"
+                      autocomplete="off"
+                      value="12:30"
+                    />
+                    <label class="btn btn-outline-primary" for="option8"
+                      >12:30 - 13:00</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option9"
+                      autocomplete="off"
+                      value="13:00"
+                    />
+                    <label class="btn btn-outline-primary" for="option9"
+                      >13:00 - 13:30</label
+                    >
+
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="option"
+                      id="option0"
+                      autocomplete="off"
+                      value="13:30"
+                    />
+                    <label class="btn btn-outline-primary" for="option0"
+                      >13:30 - 14:00</label
+                    >
+                  </div>
+                </div>
+                <% } %> <% if((g2driveposts &&
+                g2driveposts?.appointmentType=="g2" && g2driveposts?.testResult
+                == null )){ %>
+                <div class="card-body">
+                  <h3>Appointment Details</h3>
+                  <p class="card-text">
+                    Date : <%= g2driveposts.appointmentID.date %>
+                  </p>
+                  <p class="card-text">
+                    Time : <%=g2driveposts.appointmentID.time %>
+                  </p>
+                </div>
+                <% } %> <% if((g2driveposts && g2driveposts?.testResult !=
+                null)){ %>
+                <div class="card-body">
+                  <p class="card-text">
+                    Result : <%= g2driveposts.testResult %>
+                  </p>
+                  <p class="card-text">Comment : <%= g2driveposts.comment %></p>
+                </div>
+                <% } %>
+              </div>
+            </div>
+
+            <% } %>
+            <div class="row gx-4 gx-lg-5 justify-content-center mb-4">
+              <div class="d-grid">
+                <button class="btn btn-primary btn-xl" type="submit">
+                  Submit
+                </button>
+              </div>
+            </div>
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                <i class="bi-phone fs-2 mb-3 text-muted"></i>
+                <div>+1 (555) 123-4567</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <!-- Footer-->
+    <%- include("layouts/footer") -%>
+    <!-- Bootstrap core JS-->
+    <%- include("layouts/scripts") -%>
+    <script>
+      const form = document.getElementById("formController");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        var addInput = document.createElement("input");
+        addInput.setAttribute("type", "text");
+        addInput.setAttribute("name", "appointmentType");
+        addInput.setAttribute("value", "g2");
+        addInput.style.display = "none";
+        form.appendChild(addInput);
+        form.submit();
+        addInput.remove();
+      });
+      const slot = document.getElementsByName("option");
+
+      const handleResponse = (response) => {
+        if (!response.ok) {
+          throw response.status + ": " + response.statusText;
+        }
+        return response.json();
+      };
+
+      const changeDisable = (data) => {
+        slot.forEach((val) => {
+          data.appointmentSlot.forEach((va) => {
+            if (val.value == va.time) {
+              val.removeAttribute("disabled");
+              if (!va.isTimeSlotAvailable) {
+                val.setAttribute("disabled", true);
+              }
+            }
+          });
+        });
+      };
+
+      const changeDate = () => {
+        slot.forEach((val) => {
+          val.setAttribute("disabled", true);
+        });
+        let date = document.getElementById("slotDate").value;
+        let url = window.location.origin + `/get-slot/${date}`;
+        fetch(url)
+          .then((response) => handleResponse(response))
+          .then((data) => changeDisable(data))
+          .catch((error) => {
+            console.log("no data found");
+          });
+      };
+    </script>
+  </body>
+</html>

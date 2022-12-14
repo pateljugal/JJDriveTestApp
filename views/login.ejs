@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("layouts/header") -%>
+  <body>
+    <!-- Navigation-->
+    <%- include("layouts/navbar") -%>
+    <!-- Page Header-->
+    <header class="masthead">
+      <div class="container px-4 px-lg-5 h-100">
+          <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+              <div class="col-lg-8 align-self-end">
+                  <h1 class="text-white font-weight-bold">Login/Singup</h1>
+                  <hr class="divider" />
+              </div>
+              <div class="col-lg-8 align-self-baseline">
+                  <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+        
+              </div>
+          </div>
+      </div>
+  </header>
+    <!-- Post Content-->
+    <section class="page-section" id="contact">
+      <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-8 col-xl-6 text-center">
+                  <h2 class="mt-0">Registration/Sing up</h2>
+                  <hr class="divider" />
+                  <p class="text-muted mb-5">The cars we drive say a lot about us.!</p>
+              </div>
+          </div>
+          <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+              <div class="col-lg-12">
+                  <!-- * * * * * * * * * * * * * * *-->
+                  <!-- * * SB Forms Contact Form * *-->
+                  <!-- * * * * * * * * * * * * * * *-->
+                  <!-- This form is pre-integrated with SB Forms.-->
+                  <!-- To make this form functional, sign up at-->
+                  <!-- https://startbootstrap.com/solution/contact-forms-->
+                  <!-- to get an API token!-->
+                  <form id="contactForm" action="/SingUp" method="post" data-sb-form-api-token="API_TOKEN">
+                       
+                      
+                    <label for="User Name">User Name:</label>
+                    <input type="text" id="uname" name="uname" class="form-control" placeholder="Enter your user name"><br>
+
+
+                    <label for="Password">Password:</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"><br>
+
+                    <label for="RepeatPassword">Repeat Password:</label>
+                    <input type="password" id="password" name="Repeatpassword" class="form-control" placeholder="enter passord agian"><br>
+                     
+                    <label for="UserType">User Type:</label>
+                    <select id="UserType" class="form-control" name="UserType">
+                        <option name="driver" selected>Driver</option>
+                        <option name="examiner">Examiner</option>
+                        <option name="admin">Admin</option>
+                      </select><br>
+
+                      <% if(validation.confirmpass) {%>
+                        
+                          <h5 style="color: red">
+                            Make sure passord and Repeat passord both are same
+                          </h5>
+                        
+                        <% } %>
+
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                        <!-- Submit Button-->
+                        <div class="d-grid"><button class="btn btn-primary btn-xl " type="submit">Sing Up</button></div>
+                    </form>
+                    <br><br>
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6 text-center">
+                            <h2 class="mt-0">Login</h2>
+                            <hr class="divider" />
+                            <p class="text-muted mb-5">Before someone gets their drivers liscence they should have to beat Rainbow Road on Mario Kart without falling off.</p>
+                        </div>
+                    </div>
+
+                    <form action="/Signinpost" method="post">
+
+                        <label for="User Name">User Name:</label>
+                        <input type="text" id="uname" name="uname" class="form-control" placeholder="Enter your user name"><br>
+    
+    
+                        <label for="Password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"><br>
+                        <% if(validation.invalidpass) {%>
+                            <div class="col-md-12">
+                              <h6 style="color: red"> Check passord</h6>
+                            </div>
+                            <% } %>
+
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-primary btn-xl " type="submit">Login</button></div>
+
+                    </form>
+ 
+                  <!--</form>-->
+              </div>
+          </div>
+      </div>
+
+
+    
+
+      
+                
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                <i class="bi-phone fs-2 mb-3 text-muted"></i>
+                <div>+1 (555) 123-4567</div>
+            </div>
+        </div>
+    </div>
+      
+  </section>
+    <!-- Footer-->
+    <%- include("layouts/footer") -%>
+    
+    <!-- Bootstrap core JS-->
+    <%- include("layouts/scripts") -%>
+    
+  </body>
+</html>

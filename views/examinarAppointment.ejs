@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("layouts/header") -%>
+  <body>
+    <!-- Navigation-->
+    <%- include("layouts/navbar") -%>
+    <!-- Page Header-->
+    <header class="masthead">
+      <div class="container px-4 px-lg-5 h-100">
+        <div
+          class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center"
+        >
+          <div class="col-lg-8 align-self-end">
+            <h1 class="text-white font-weight-bold">APPOINTMENT SLOT</h1>
+            <hr class="divider" />
+          </div>
+          <div class="col-lg-8 align-self-baseline">
+            <p class="text-white-75 mb-5">KEEP CALM I ADD APPOINTMENT SLOT !</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+      <!--Personal Information-->
+      <section class="page-section" id="contact">
+        <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+              <h2 class="mt-0">Appointment Slot</h2>
+              <hr class="divider" />
+              <p class="text-muted mb-5">
+                The cars we drive say a lot about us.!
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card col-lg-12 mb-4">
+              <div class="card-header">Filter By:</div>
+              <div
+                class="card-body"
+                style="justify-content: center; align-items: center"
+              >
+                <div class="form-floating mb-3">
+                  <div class="btn-group" style="gap: 4px">
+                    <input onclick="window.location='/exaimnar-appointment/g';"
+                    type="radio" class="btn-check" name="filter" id="filter"
+                    autocomplete="off" <%=filteredBy=="g" ? 'checked' : '' %>
+                    value="g" />
+                    <label class="btn btn-outline-primary" for="filter"
+                      >G</label
+                    >
+
+                    <input onclick="window.location='/exaimnar-appointment/g2';"
+                    type="radio" class="btn-check" name="filter" id="filter2"
+                    autocomplete="off" <%=filteredBy=="g2" ? 'checked' : '' %>
+                    value="g2" />
+                    <label class="btn btn-outline-primary" for="filter2"
+                      >G2</label
+                    >
+
+                    <input onclick="window.location='/exaimnar-appointment';"
+                    type="radio" class="btn-check" name="filter" id="filter3"
+                    autocomplete="off" <%=filteredBy=="all" ? 'checked' : '' %>
+                    value="all" />
+                    <label class="btn btn-outline-primary" for="filter3"
+                      >ALL</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <div class="col-lg-12" style="display: contents">
+              <% if(driver) for(var i=0; i < driver.length; i++) { %>
+              <div class="card col-lg-3 mb-4">
+                <div class="card-header">Driver's Appointment</div>
+                <div class="card-body">
+                  <p class="card-text">First Name: <%= driver[i].fname %></p>
+                  <p class="card-text">Last Name: <%= driver[i].lname %></p>
+                  <p class="card-text">
+                    Make: <%= driver[i].Car_details.make %>
+                  </p>
+                  <p class="card-text">
+                    Model: <%= driver[i].Car_details.Model %>
+                  </p>
+                  <% if(error && driver[i]._id == id[0]) {%>
+                  <h5 style="color: red"><%= errormsg %></h5>
+                  <% } %>
+                </div>
+                <div
+                  class="card-footer text-muted"
+                  style="justify-content: center; text-align: center"
+                >
+                  <button
+                    type="button"
+                    driverid="<%- driver[i]._id %>"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    Add Result
+                  </button>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Result</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <form action="/add-result" method="POST" id="formController">
+                <div class="modal-body">
+                  <div class="form-floating mb-3">
+                    <input
+                      class="form-control"
+                      id="comment"
+                      name="comment"
+                      type="text"
+                      placeholder="Comment here"
+                      data-sb-validations="required,comment"
+                    />
+                    <label for="comment">Comment here</label>
+                    <div
+                      class="invalid-feedback"
+                      data-sb-feedback="comment is required"
+                    >
+                      comment is required.
+                    </div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <div class="btn-group" style="gap: 4px">
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="option"
+                        id="option"
+                        autocomplete="off"
+                        value="pass"
+                      />
+                      <label class="btn btn-outline-primary" for="option"
+                        >PASS</label
+                      >
+
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="option"
+                        id="option2"
+                        autocomplete="off"
+                        value="fail"
+                      />
+                      <label class="btn btn-outline-primary" for="option2"
+                        >FAIL</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Save result
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer-->
+    <%- include("layouts/footer") -%>
+    <!-- Bootstrap core JS-->
+    <%- include("layouts/scripts") -%>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        var resultModal = document.getElementById("exampleModal");
+        resultModal.addEventListener("show.bs.modal", function (event) {
+          var button = event.relatedTarget;
+          var driverid = button.getAttribute("driverid");
+          var element = document.createElement("input");
+          element.setAttribute("value", driverid);
+          element.setAttribute("name", "id");
+          element.setAttribute("type", "hidden");
+          document.getElementById("formController").appendChild(element);
+        });
+      });
+    </script>
+  </body>
+</html>
